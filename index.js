@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const { chats } = require('./src/data/testdata');
 const connectDB = require('./src/config/db');
+// const pageNotFound = require('./src/middleware/pageNotFound')
 const userRoute = require('./src/routes/userRoute')
 require('dotenv').config()
 const port = process.env.PORT
@@ -25,6 +26,8 @@ app.get('/chats', (req, res) => {
 	res.send(chats)
 })
 app.use('/api/user', userRoute)
+// app.use(pageNotFound)
+
 app.get('/chat/:id', (req, res) => {
 	const search = chats.find((c) => c._id === req.params.id)
 	console.log(req.params.id);

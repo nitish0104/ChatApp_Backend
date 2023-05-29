@@ -5,6 +5,7 @@ const { chats } = require('./src/data/testdata');
 const connectDB = require('./src/config/db');
 // const pageNotFound = require('./src/middleware/pageNotFound')
 const userRoute = require('./src/routes/userRoute')
+const chatRoute = require('./src/routes/chatRoute')
 require('dotenv').config()
 const port = process.env.PORT
 
@@ -22,9 +23,7 @@ app.use(cors())
 app.get('/', (req, res) => {
 	res.send("Hello Backend")
 })
-app.get('/chats', (req, res) => {
-	res.send(chats)
-})
+app.use('/api/chats', chatRoute)
 app.use('/api/user', userRoute)
 // app.use(pageNotFound)
 

@@ -23,9 +23,9 @@ const allUsers = asyncHandler(async (req, res) => {
 
 const signup = async (req, res) => {
 
-	const { name, email, password } = req.body
+	const { username, email, password } = req.body
 	console.log(req.body);
-	console.log(name);
+	console.log(username);
 	try {
 		//existing user
 		const existinguser = await userModel.findOne({ email: email })
@@ -36,7 +36,7 @@ const signup = async (req, res) => {
 		const hashpassword = await bcrypt.hash(password, 10)
 		//userCreation
 		const result = await userModel.create({
-			name: name,
+			username: username,
 			email: email,
 			password: hashpassword,
 		})
